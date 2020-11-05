@@ -5,14 +5,8 @@ var multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
 //sunucu baglantisi
-// var db = require('./app_server/modals/db');
 var MongoClient = require('mongodb').MongoClient;
-<<<<<<< HEAD
-var url = "mongodb://167.99.253.192:27017";
-
-=======
-var url = "mongodb://localhost:27017/";
->>>>>>> e1abed0ebe976f31ea7d8d803a1fe1157692e43c
+var url = "mongodb://localhost:27017";
 //file name
 var excelName = 'exampledata';
 
@@ -112,21 +106,17 @@ app.get('/',function(req,res){
 
 
 
-app.listen('8000', function(){
-    console.log('running on 8000...');
+app.listen('3000', function(){
+    console.log('running on 3000...');
 });
 
 
 
 
 
-<<<<<<< HEAD
 
 
 
 
 
 
-=======
-//a.canturk
->>>>>>> e1abed0ebe976f31ea7d8d803a1fe1157692e43c
