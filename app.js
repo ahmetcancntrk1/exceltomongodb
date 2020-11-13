@@ -4,11 +4,16 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
-//sunucu baglantisi
+
+//mongo connect
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017";
-//file name
-var excelName = 'exampledata';
+var url = "mongodb://localhost:27017/";
+
+//http;//example/json
+var njson = ''
+
+//so file 
+var excelName = '';
 
 app.use(bodyParser.json());  
 
@@ -17,10 +22,18 @@ var storage = multer.diskStorage({ //multers disk storage settings
         cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
-        excelName = file.originalname
+        var datetimestamp = Date.now();
+        cb(null, file.originalname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        excelName = file.originalname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]
     }
 });
+
+
+
+
+
+
+
 
 
 var upload = multer({ //multer settings
@@ -54,7 +67,6 @@ app.post('/upload', function(req, res) {
         } else {
             exceltojson = xlstojson;
         }
-        console.log(req.file.path);
         try {
             exceltojson({
                 input: req.file.path,
@@ -65,29 +77,48 @@ app.post('/upload', function(req, res) {
                 if(err) {
                     return res.json({error_code:1,err_desc:err, data: null});
                 } 
-                
-                function islem2() {
-                    //save        
+             
+                function islem2(req,res) {
+                    islem3()                  
+                    if (1==0) {
+                        console.log('data not saved')
+                    } else {
+                    //Write        
                     MongoClient.connect(url, function(err, db) {
                       if (err) throw err;
                       var dbo = db.db("excelFiles");
                       //insert
                       dbo.collection(excelName).insertMany(result, function(err, res) {
                         if (err) throw err;
-                        console.log("data inserted");
+                        console.log('data saved')
                         db.close();
                       });
-                    });                    
-
-
-
-                }
+                    });
+                }   
+            }       
                 function islem() {
-                     //data show screen
-                     res.json(result);
-                     islem2()
+              //console.log('http://localhost/demo/list.php?link=http://165.227.148.66/json&filename='+excelName)
+              res.json(result);
+              setTimeout(function() {
+                njson = result
+            }, random);
+                   islem2();          
                 }
                 islem();
+                function islem3() {
+                    //Read        
+                    MongoClient.connect(url, function(err, db) {
+                        if (err) throw err;
+                        var dbo = db.db("excelFiles");
+                        //Find all documents in the customers collection:
+                        dbo.collection(excelName).find({}).toArray(function(err, result) {
+                          if (err) throw err;
+                        // console.log(result);
+                        
+                          db.close();
+                        });
+                      });
+                }
 
               
             });
@@ -99,20 +130,25 @@ app.post('/upload', function(req, res) {
     })
    
 });
+var random = Math.floor(Math.random() * 600) + 100  
+app.get('/json', function(req,res) {
+setTimeout(function() {
+res.send(njson)
+}, random);
+});
 
 app.get('/',function(req,res){
     res.sendFile(__dirname + "/index.html");
 });
+app.get('/transportauftrag',function(req,res){
+    res.sendFile(__dirname + "/transportauftrag.html");
+});
+app.post('/get/ip/address', function (req, res) {
 
-
-
+});
 app.listen('3000', function(){
     console.log('running on 3000...');
 });
-
-
-
-
 
 
 
