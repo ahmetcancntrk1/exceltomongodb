@@ -99,32 +99,36 @@ $('.validate-formTrain').on('submit', function () {
 
         return check;
     });
+   //train
+   var Metrans = 'Metrans a.s.'
+   var metrans = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Podleská 926/5, 104 00 Prag" readonly>'
+
+   var EGS = 'EGS European Gateway Services'
+   var egs = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Europaweg 875, 3199 LD Rotterdam" readonly>'
    
-    var Metrans = 'Metrans'
-    var Kloiber = 'Kloiber'
-    var Ahmet = 'ahmet'
+    //truck
+    var Kloiber = 'Kloiber GmbH'
+    var kloiber = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Hofbräuallee 8, 81829 München" readonly>'
+
+    var Schmid = 'Schmid Transport und Spedition GmbH'
+    var schmid = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Hamburger Straße 59, 90451 Nürnberg" readonly>'
+
+    var Deisser = 'Deisser GmbH'
+    var deisser = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Korntaler Straße 197, 70439 Stuttgart" readonly>'
+
 
     function validateUnternehmenTrain(input) {
         if ($(input).attr('type') == 'UnternehmenTrain' || $(input).attr('name') == 'UnternehmenTrain') {
 
+            if ($(input).val().trim().match(EGS) != null) {
+                if ($(input).val() == EGS) {
+                    $("#div-tstTrain").html(egs);
+                }
+                return false;
+            }
             if ($(input).val().trim().match(Metrans) != null) {
                 if ($(input).val() == Metrans) {
-                    var metrans = '<br><input name="adresTrain" id="adresTrain" class="input100" type="text" value="Podleska 10400 Prag" readonly>'
                     $("#div-tstTrain").html(metrans);
-                }
-                return false;
-            }
-            if ($(input).val().trim().match(Kloiber) != null) {
-                if ($(input).val() == Kloiber) {
-                    var kloiber = '<br><input name="adresTrain" id="adresTrain" class="input100" type="text" value="Hofbräuallee 8 81829 München" readonly>'
-                    $("#div-tstTrain").html(kloiber);
-                }
-                return false;
-            }
-            if ($(input).val().trim().match(Ahmet) != null) {
-                if ($(input).val() == Ahmet) {
-                    var ahmet = '<br><input name="adresTrain" id="adresTrain" class="input100" type="text" value="Ahmet 10400 Prag" readonly>'
-                    $("#div-tstTrain").html(ahmet);
                 }
                 return false;
             }
@@ -141,24 +145,21 @@ $('.validate-formTrain').on('submit', function () {
     function validateUnternehmenTruck(input) {
         if ($(input).attr('type') == 'UnternehmenTruck' || $(input).attr('name') == 'UnternehmenTruck') {
 
-            if ($(input).val().trim().match(Metrans) != null) {
-                if ($(input).val() == Metrans) {
-                    var metrans = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Podleska 10400 Prag" readonly>'
-                    $("#div-tstTruck").html(metrans);
+            if ($(input).val().trim().match(Schmid) != null) {
+                if ($(input).val() == Schmid) {
+                    $("#div-tstTruck").html(schmid);
                 }
                 return false;
             }
             if ($(input).val().trim().match(Kloiber) != null) {
                 if ($(input).val() == Kloiber) {
-                    var kloiber = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Hofbräuallee 8 81829 München" readonly>'
                     $("#div-tstTruck").html(kloiber);
                 }
                 return false;
             }
-            if ($(input).val().trim().match(Ahmet) != null) {
-                if ($(input).val() == Ahmet) {
-                    var ahmet = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Ahmet 10400 Prag" readonly>'
-                    $("#div-tstTruck").html(ahmet);
+            if ($(input).val().trim().match(Deisser) != null) {
+                if ($(input).val() == Deisser) {
+                    $("#div-tstTruck").html(deisser);
                 }
                 return false;
             }
