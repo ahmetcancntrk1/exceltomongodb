@@ -101,10 +101,10 @@ $('.validate-formTrain').on('submit', function () {
     });
    //train
    var Metrans = 'Metrans a.s.'
-   var metrans = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Podleská 926/5, 104 00 Prag" readonly>'
+   var metrans = '<br><input name="adresTrain" id="adresTrain" class="input100" type="text" value="Podleská 926/5, 104 00 Prag" readonly>'
 
    var EGS = 'EGS European Gateway Services'
-   var egs = '<br><input name="adresTruck" id="adresTruck" class="input100" type="text" value="Europaweg 875, 3199 LD Rotterdam" readonly>'
+   var egs = '<br><input name="adresTrain" id="adresTrain" class="input100" type="text" value="Europaweg 875, 3199 LD Rotterdam" readonly>'
    
     //truck
     var Kloiber = 'Kloiber GmbH'
