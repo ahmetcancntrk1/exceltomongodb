@@ -1,0 +1,1 @@
+//db baglantisi gelecek
