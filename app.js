@@ -287,7 +287,7 @@ app.post('/send', function (req, res) {
 	var Bemerkung2 = req.body.Bemerkung2;
 	var secim = req.body.secim;
 
-
+	console.log(ETD)
 
 	//date on
 	var today = new Date();
